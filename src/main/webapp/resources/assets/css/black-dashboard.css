@@ -15444,7 +15444,7 @@ table.tablesorter thead tr .headerSortDown {
     opacity: 0;
   }
   .sidebar-mini .main-panel>.content {
-    padding-left: 130px;
+    padding-left: 110px;
   }
   .sidebar-mini footer {
     padding-left: 130px;
@@ -15541,7 +15541,7 @@ table.tablesorter thead tr .headerSortDown {
     width: 100%;
   }
   .main-panel .content {
-    padding-left: 30px;
+    padding-left: 110px;
   }
   .nav-open .main-panel {
     right: 0;
@@ -15627,7 +15627,7 @@ table.tablesorter thead tr .headerSortDown {
 
 @media screen and (max-width: 768px) {
   .main-panel .content {
-    padding-left: 15px;
+    padding-left: 110px;
     padding-right: 15px;
   }
 }
