@@ -7,6 +7,10 @@
 <body>
 <h1>	Hello world!</h1>
 
+<a href="basic">basic, preset</a>
+(!) 190320 -- i tag에 title 넣었음. 반영할 것.
+<br><br>
+
 <a href="dashboard">dashboard</a>
 <a href="documentation">documentation</a>
 <a href="icons">icons</a>

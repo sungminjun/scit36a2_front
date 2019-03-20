@@ -77,4 +77,18 @@ public class HomeController {
 		return "user";
 	}
 
+	@RequestMapping(value = "/basic", method = RequestMethod.GET)
+	public String basic() {
+		return "basic";
+	}
+
+	@RequestMapping(value = "/main_later", method = RequestMethod.GET)
+	public String main_later() {
+		return "main_later";
+	}
+
+	@RequestMapping(value = "/login_later", method = RequestMethod.GET)
+	public String login_later() {
+		return "login_later";
+	}
 }
