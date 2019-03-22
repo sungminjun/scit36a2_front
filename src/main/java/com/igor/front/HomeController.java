@@ -91,4 +91,8 @@ public class HomeController {
 	public String login_later() {
 		return "login_later";
 	}
+	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	public String chart() {
+		return "chart";
+	}
 }
