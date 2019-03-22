@@ -91,4 +91,9 @@ public class HomeController {
 	public String login_later() {
 		return "login_later";
 	}
+
+	@RequestMapping(value = "/admin_main_later", method = RequestMethod.GET)
+	public String admin_main_later() {
+		return "admin_main_later";
+	}
 }

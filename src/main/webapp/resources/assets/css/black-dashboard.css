@@ -4322,7 +4322,7 @@ input[type="button"].btn-block {
 }
 
 .nav-tabs {
-  border-bottom: 0.0625rem solid #e3e3e3;
+  border-bottom: 0.0625rem solid #212529;
 }
 
 .nav-tabs .nav-item {
@@ -7758,6 +7758,14 @@ button.bg-darker:focus {
   top: 0;
   right: 0;
   left: 0;
+  z-index: 1030;
+}
+
+.fixed-admin-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 130px;
   z-index: 1030;
 }
 
