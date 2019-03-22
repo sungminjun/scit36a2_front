@@ -105,5 +105,10 @@ public class HomeController {
 	@RequestMapping(value = "/loginMain", method = RequestMethod.GET)
 	public String loginMain() {
 		return "loginMain";
+
+	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	public String chart() {
+		return "chart";
+
 	}
 }
