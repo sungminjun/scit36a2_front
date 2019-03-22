@@ -22,16 +22,20 @@
 
 <br><br>
 
-<a href="dashboard">dashboard</a>
-<a href="documentation">documentation</a>
-<a href="icons">icons</a>
-<a href="map">map</a>
-<a href="notifications">notifications</a>
-<a href="rtl">rtl</a>
-<a href="tables">tables</a>
-<a href="typography">typography</a>
-<a href="upgrade">upgrade</a>
-<a href="user">user</a>
+<a href="dashboard">dashboard<br></a>
+<a href="documentation">documentation<br></a>
+<a href="icons">icons<br></a>
+<a href="map">map<br></a>
+<a href="notifications">notifications<br></a>
+<a href="rtl">rtl<br></a>
+<a href="tables">tables<br></a>
+<a href="typography">typography<br></a>
+<a href="upgrade">upgrade<br></a>
+<a href="user">user<br></a>
+
+<a href="joinForm">joinForm<br></a>
+<a href="idpwSearch">idpwSearch<br></a>
+<a href="loginMain">loginMain<br></a>
 
 </body>
 </html>
