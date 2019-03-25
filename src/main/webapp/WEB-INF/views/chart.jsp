@@ -69,9 +69,9 @@
 							<button type="submit" class="btn-default ml-auto mr-auto" id="week" style="width: 10%;">주기준</button>
 							<button type="submit" class="btn-default ml-auto mr-auto" id="month" style="width: 10%;">월기준</button>
 							<button type="submit" class="btn-default  "style="width: 10%;">기간설정</button>
-							<input type="text" id="datepicker1" placeholder="yy-mm-dd" style="width: 100px">
-							<input type="text" id="datepicker2" placeholder="yy-mm-dd" style="width: 100px">
-							<button type="submit" class="btn ml-auto mr-auto">검색</button>
+							시작<input type="text" id="datepicker1" placeholder="yy-mm-dd" style="width: 100px">
+							종료<input type="text" id="datepicker2" placeholder="yy-mm-dd" style="width: 100px">
+							<button type="submit" class="btn ml-auto mr-auto" id="search">검색</button>
 							</div>
 							<div class="card-body">
 								<div class="row">
@@ -93,8 +93,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="card">
-							<div class="card-body" style="height: auto">
-								<canvas id="myChart"></canvas>
+							<div class="card-body">
+								<canvas id="myChart" style="max-height: 500px;"></canvas>
 							</div>
 						</div>
 					</div>
@@ -126,64 +126,89 @@
 		
 	</script>
 	<script>
+	var chart;
+	//날짜 찝기
 	$(function(){
 	    $( "#datepicker1, #datepicker2" ).datepicker({
 	    	dateFormat: 'yy-mm-dd',
 	    });
 	});
-		//다중 그래프
-		var data;
+	//날짜 유효성 검사
+	$(function(){
+		$("#search").on('click',function(){
+			var start = $("#datepicker1").val();
+			var end = $("#datepicker2").val();
+			if (start=='') {
+				alert("시작일을 입력해주세요!")
+				return;
+			}
+			if (end=='') {
+				alert("종료일을 입력해주세요!")
+				return;
+			}
+			if (start>end) {
+				alert("종료일은 시작일보다 작을 수 없습니다.")
+				return;
+			}
+		})
+	});
+	
+	
+	
+		//그래프 보여주기
+		var data =[23, 22, 43, 25, 122, 5, 25];
 		var labels = [ "1월", "2월", "3월", "4월", "5월", "6월", "7월" ];
 		$(function() {
 			$("button[name=1]").on('click', function() {
 				data = [ 23, 22, 43, 25, 122, 5, 25 ];
-				$('canvas').removeAttr('class');
-				good();
+				newchart.data.datasets[0].data=data;
+				newchart.data.labels=labels;
+				newchart.update();
 			});
 			$("button[name=2]").on('click', function() {
 				data = [ 12, 32, 55, 25, 53, 33, 76 ];
-				$('canvas').removeAttr('class');
-				good();
+				newchart.data.datasets[0].data=data;
+				newchart.data.labels=labels;
+				newchart.update();
 			});
 			$("button[name=3]").on('click', function() {
 				data = [ 62, 73, 33, 13, 52, 31, 25 ];
-				$('canvas').removeAttr('class');
-				good();
+				newchart.data.datasets[0].data=data;
+				newchart.data.labels=labels;
+				newchart.update();
 			});
 			$("button[name=4]").on('click', function() {
 				data = [ 42, 22, 13, 20, 22, 4, 25 ];
-				$('canvas').removeAttr('class');
-				good();
+				newchart.data.datasets[0].data=data;
+				newchart.data.labels=labels;
+				newchart.update();
 			});
 			$("button[name=5]").on('click', function() {
 				data = [ 52, 22, 4, 43, 12, 52, 25 ];
-				$('canvas').removeAttr('class');
-				good();
+				newchart.data.datasets[0].data=data;
+				newchart.data.labels=labels;
+				newchart.update();
 			});
 			$("#day").on('click', function() {
 				labels = [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 ];
+				newchart.data.labels=labels;
+				newchart.update();
+				
 			});
 			$("#week").on('click', function() {
 				labels = [ "1주차","2주차","3주차","3주차","5주차" ];
+				newchart.data.labels=labels;
+				newchart.update();
 			});
 			$("#month").on('click', function() {
 				labels = [ "1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月", ];
+				newchart.data.labels=labels;
+				newchart.update();
 			});
 		});
-		
-		$(function() {
-			good();
-		});
-		function good() {
-			
-			var ctx;
 			ctx = document.getElementById('myChart').getContext('2d');
-			var chart;
-			chart = new Chart(ctx, {
-				// The type of chart we want to create
-
-				type : 'bar',
-				// The data for our dataset
+			var newchart = new Chart(ctx, {
+				type : 'bar',//차트모양
 				data : {
 					labels : labels,
 					datasets : [ {
@@ -195,7 +220,6 @@
 				}
 			// Configuration options go here
 			});
-		};
 	</script>
 </body>
 
