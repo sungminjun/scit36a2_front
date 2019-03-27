@@ -95,7 +95,7 @@ public class HomeController {
 	@RequestMapping(value = "/admin_main_later", method = RequestMethod.GET)
 	public String admin_main_later() {
 		return "admin_main_later";
-	
+	}
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm() {
 		return "joinForm";
@@ -109,10 +109,13 @@ public class HomeController {
 	@RequestMapping(value = "/loginMain", method = RequestMethod.GET)
 	public String loginMain() {
 		return "loginMain";
-
+	}
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart() {
 		return "chart";
-
+	}
+	@RequestMapping(value = "/posMain", method = RequestMethod.GET)
+	public String posMain() {
+		return "posMain";
 	}
 }
