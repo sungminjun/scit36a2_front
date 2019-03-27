@@ -36,6 +36,8 @@
 <a href="joinForm">joinForm<br></a>
 <a href="idpwSearch">idpwSearch<br></a>
 <a href="loginMain">loginMain<br></a>
+<a href="posMain">posMain<br></a>
+
 
 </body>
 </html>

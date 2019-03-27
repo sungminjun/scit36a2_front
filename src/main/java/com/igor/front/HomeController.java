@@ -113,6 +113,9 @@ public class HomeController {
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart() {
 		return "chart";
-
+	}
+	@RequestMapping(value = "/posMain", method = RequestMethod.GET)
+	public String posMain() {
+		return "posMain";
 	}
 }
