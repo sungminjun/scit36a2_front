@@ -64,13 +64,12 @@
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-body">
-							<p1>민나노매점</p1>
-							<button type="submit" class="btn-default ml-auto mr-auto" id="day" style="width: 10%;">일기준</button>
-							<button type="submit" class="btn-default ml-auto mr-auto" id="week" style="width: 10%;">주기준</button>
-							<button type="submit" class="btn-default ml-auto mr-auto" id="month" style="width: 10%;">월기준</button>
-							<button type="submit" class="btn-default  "style="width: 10%;">기간설정</button>
-							시작<input type="text" id="datepicker1" placeholder="yy-mm-dd" style="width: 100px">
-							종료<input type="text" id="datepicker2" placeholder="yy-mm-dd" style="width: 100px">
+							<p style="size: 20em;">민나노매점</p1>
+							<button type="submit" class="btn-default ml-auto mr-auto" id="day" >일기준</button>
+							<button type="submit" class="btn-default ml-auto mr-auto" id="week" >주기준</button>
+							<button type="submit" class="btn-default ml-auto mr-auto" id="month" >월기준</button>
+							<p1>시작</p1><input type="text" id="datepicker1" placeholder="yy-mm-dd" style="width: 100px">
+							<p1>종료</p1><input type="text" id="datepicker2" placeholder="yy-mm-dd" style="width: 100px">
 							<button type="submit" class="btn ml-auto mr-auto" id="search">검색</button>
 							</div>
 							<div class="card-body">
@@ -91,10 +90,21 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<!-- 차트부분 -->
+					<div class="col-md-7">
 						<div class="card">
 							<div class="card-body">
-								<canvas id="myChart" style="max-height: 500px;"></canvas>
+								<canvas id="myChart" height="200%"></canvas>
+							</div>
+						</div>
+					</div>
+					<!-- 차트 표 부분 -->
+					<div class="col-md-5">
+						<div class="card">
+							<div class="card-body">
+							<div class="tableTest">
+								
+							</div>
 							</div>
 						</div>
 					</div>
@@ -150,42 +160,79 @@
 				alert("종료일은 시작일보다 작을 수 없습니다.")
 				return;
 			}
+			//날짜 검색
+				alert("요기요");
+				$.ajax({
+					url : 'search-date',
+					type : 'get',
+					data : {
+						startDate : start,
+						endDate : end
+					},
+					success : function(resp){
+						alert(resp);
+					}
 		})
 	});
-	
-	
-	
+	});
+	//기본값 그래프 (일일매출  현재일부터 1일까지의 매출)
+		var data =[];
+		var labels = [];
+		var label = "매출액";
+		//map 형식 index 번호 세는용
+		var temp = 0;
+		var test={1: "100",2:"300",3:"300",4:"300",5:"300",6:"300",7:"300",8:"300",9:"300",10:"300"}
+	$(function(){
+		$.each(test, function(key, value){
+			labels[temp]=key+"일";
+			data[temp]=value;
+			newchart.update();
+			temp++;
+		});
+	});
+	//기본값 테이블(표) 매출
+	$(function(){
+		var output='';
+		output += '<table class="table table-hover ">';
+		output += '<th>월</th><th>판매금액</th><th>비고</th>';
+		$.each(test,function(key, value){
+			output +='<tr><td>'+key+'일</td><td>'+ value +'원</td><td></td></tr>'
+		})
+		$('.tableTest').html(output);
+	});
 		//그래프 보여주기
-		var data =[23, 22, 43, 25, 122, 5, 25];
-		var labels = [ "1월", "2월", "3월", "4월", "5월", "6월", "7월" ];
+		var card=false;
 		$(function() {
 			$("button[name=1]").on('click', function() {
 				data = [ 23, 22, 43, 25, 122, 5, 25 ];
 				newchart.data.datasets[0].data=data;
+				newchart.data.datasets[0].label = '매출액';
 				newchart.data.labels=labels;
 				newchart.update();
+
+				
 			});
 			$("button[name=2]").on('click', function() {
 				data = [ 12, 32, 55, 25, 53, 33, 76 ];
 				newchart.data.datasets[0].data=data;
+				newchart.data.datasets[0].label = '고객수';
 				newchart.data.labels=labels;
 				newchart.update();
 			});
 			$("button[name=3]").on('click', function() {
 				data = [ 62, 73, 33, 13, 52, 31, 25 ];
 				newchart.data.datasets[0].data=data;
+				newchart.data.datasets[0].label = '메뉴통계';
 				newchart.data.labels=labels;
 				newchart.update();
 			});
 			$("button[name=4]").on('click', function() {
-				data = [ 42, 22, 13, 20, 22, 4, 25 ];
-				newchart.data.datasets[0].data=data;
-				newchart.data.labels=labels;
-				newchart.update();
+				newchart.clear();
 			});
 			$("button[name=5]").on('click', function() {
 				data = [ 52, 22, 4, 43, 12, 52, 25 ];
 				newchart.data.datasets[0].data=data;
+				newchart.data.datasets[0].label = '이익률 ';
 				newchart.data.labels=labels;
 				newchart.update();
 			});
@@ -212,14 +259,14 @@
 				data : {
 					labels : labels,
 					datasets : [ {
-						label : "평균매출액",
+						label : label,
 						backgroundColor : 'rgb(111, 111, 102)',
 						borderColor : 'rgb(111, 111, 102)',
 						data : data,
 					} ]
 				}
-			// Configuration options go here
 			});
+
 	</script>
 </body>
 
