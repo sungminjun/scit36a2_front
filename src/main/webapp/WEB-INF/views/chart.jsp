@@ -68,20 +68,24 @@
 							<div class="card-body">
 								<p style="size: 20em;">
 									민나노매점
-									</p1>
-									<button type="submit" class="btn-default ml-auto mr-auto"
-										id="day">일기준</button>
-									<button type="submit" class="btn-default ml-auto mr-auto"
-										id="week">주기준</button>
-									<button type="submit" class="btn-default ml-auto mr-auto"
-										id="month">월기준</button>
-									<p1>시작</p1>
-									<input type="text" id="datepicker1" placeholder="yy-mm-dd"
-										style="width: 100px">
-									<p1>종료</p1>
-									<input type="text" id="datepicker2" placeholder="yy-mm-dd"
-										style="width: 100px">
-									<button type="submit" class="btn ml-auto mr-auto" id="search">검색</button>
+								</p1>	
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-secondary active"> <input
+										type="radio" name="options" id="option1" autocomplete="off"
+										checked value="day"> DAY
+									</label> <label class="btn btn-secondary"> <input type="radio"
+										name="options" id="option2" autocomplete="off" value="week"> WEEK
+									</label> <label class="btn btn-secondary"> <input type="radio"
+										name="options" id="option3" autocomplete="off" value="month"> MONTH
+									</label>
+								</div>
+								<p1>시작</p1>
+								<input type="text" id="datepicker1" placeholder="yy-mm-dd"
+									style="width: 100px">
+								<p1>종료</p1>
+								<input type="text" id="datepicker2" placeholder="yy-mm-dd"
+									style="width: 100px">
+								<button type="submit" class="btn ml-auto mr-auto" id="search">검색</button>
 							</div>
 							<div class="card-body">
 								<div class="row">
@@ -125,7 +129,7 @@
 				</div>
 			</div>
 		</div>
-		<footer class="footer"> </footer>
+		<footer class="footer"></footer>
 	</div>
 	</div>
 	<!--추가한 파일-->
@@ -164,6 +168,7 @@
 			$("#search").on('click', function() {
 				var start = $("#datepicker1").val();
 				var end = $("#datepicker2").val();
+				var unit = $('input[name=options]').val();
 				if (start == '') {
 					alert("시작일을 입력해주세요!")
 					return;
@@ -179,11 +184,12 @@
 				//날짜 검색
 				alert("요기요");
 				$.ajax({
-					url : 'search-date',
-					type : 'get',
+					url : 'search_date',
+					type : 'post',
 					data : {
 						startDate : start,
-						endDate : end
+						endDate : end, 	
+						unit : unit
 					},
 					success : function(resp) {
 						alert(resp);
@@ -214,7 +220,8 @@
 			$.each(resp, function(index, item) {
 				output += '<tr><td style="width :30%;">' + item.PAYMENT_TIME
 						+ '</td><td style=" text-align: center;, width :50%;">'
-						+ item.PAYMENT_AMOUNT + '원</td><td style="width :30%;"></td></tr>'
+						+ item.PAYMENT_AMOUNT
+						+ '원</td><td style="width :30%;"></td></tr>'
 			})
 			output += "</table>"
 			$('.tableTest').html(output);
